@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.0",
+    "signature": "8bb64961b609658eedcfff970ddacf443f7e957c"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.0": {
+      "NCoreDownloader/1.0.0": {
+        "dependencies": {
+          "system.xml.xpath.xmldocument": "4.0.0"
+        },
+        "runtime": {
+          "NCoreDownloader.dll": {}
+        }
+      },
+      "system.xml.xpath.xmldocument/4.0.0": {
+        "runtime": {
+          "lib/dotnet/System.Xml.XPath.XmlDocument.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NCoreDownloader/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "system.xml.xpath.xmldocument/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-toGFsezsdAJ3Fkau0l386iGBg3qfYauQrM4haX1nWPYnUOWb0hXfAEVIi47/Ke4ET3gl9h9ZppKiws8QWeJVyQ=="
+    }
+  }
+}
