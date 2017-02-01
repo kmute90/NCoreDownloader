@@ -1,3 +1,5 @@
 .suo
 bin
 obj
+*.user
+project.lock.json
