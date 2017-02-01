@@ -18,7 +18,7 @@ namespace NCoreDownloader
 			FeedUrl = feedUrl;
 		}
 
-		public async Task ReadAsync()
+		public async Task<List<RssItemModel>> ReadAsync()
 		{
 			var client = new HttpClient();
 			var stream = await client.GetStreamAsync(FeedUrl);
@@ -29,7 +29,7 @@ namespace NCoreDownloader
 			var regex = new Regex(@"(?<=&id=)[0-9]*");
 
 			XDocument xDoc = XDocument.Parse(xmlFeed.SelectSingleNode("rss").InnerXml);
-			var feeds = xDoc.Descendants("item").Select(feed => new RssItemModel()
+			var items = xDoc.Descendants("item").Select(feed => new RssItemModel()
 			{
 				Id = int.Parse(regex.Match(feed.Element("link").Value).Value),
 				Title = feed.Element("title").Value,
@@ -39,18 +39,7 @@ namespace NCoreDownloader
 				Source = feed.Element("source").Attribute("url").Value
 			}).ToList();
 
-
-
-			using (var context = new NCoreDownloaderContext())
-			{
-				foreach (var item in feeds)
-				{
-					context.RssItems.AddIfNotExists(item, i => i.Id == item.Id );
-				}
-				await context.SaveChangesAsync();
-			}
-
-
+			return items;
 
 		}
 

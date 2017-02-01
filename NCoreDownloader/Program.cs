@@ -9,7 +9,7 @@ namespace NCoreDownloader
         {
 			// Create a IPC wait handle with a unique identifier.
 			bool createdNew;
-			var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, "CF2D4313-33DE-489D-9721-6AFF69841DEA", out createdNew);
+			var waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, Guid.NewGuid().ToString().ToUpper(), out createdNew);
 			var signaled = false;
 
 			// If the handle was already there, inform the other process to exit itself.
@@ -39,7 +39,13 @@ namespace NCoreDownloader
 		private static void OnTimerElapsed(object state)
 		{
 			var reader = new RssReader("https://ncore.cc/rss/rssdd.xml");
-			reader.ReadAsync().Wait();
+			var items = reader.ReadAsync().Result;
+
+			var downloader = new TorrentDownloader();
+			downloader.DownloadTorrent(items[0].Link).Wait();
+
+			DataAccess.SaveItems(items).Wait();
+
 		}
 	}
 }
