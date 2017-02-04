@@ -8,23 +8,14 @@ using NCoreDownloader;
 namespace NCoreDownloader.Migrations
 {
     [DbContext(typeof(NCoreDownloaderContext))]
-    partial class NCoreDownloaderContextModelSnapshot : ModelSnapshot
+    [Migration("20170202195151_qbittorrent")]
+    partial class qbittorrent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
-
-            modelBuilder.Entity("NCoreDownloader.Model.QBitTorrentData", b =>
-                {
-                    b.Property<string>("SessionId")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("SessionId");
-
-                    b.ToTable("QBitTorrentData");
-                });
 
             modelBuilder.Entity("NCoreDownloader.RssItemModel", b =>
                 {

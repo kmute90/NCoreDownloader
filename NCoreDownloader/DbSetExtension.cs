@@ -9,9 +9,9 @@ namespace NCoreDownloader
 {
 	public static class DbSetExtensions
 	{
-		public static T AddIfNotExists<T>(this DbSet<T> dbSet, T entity, Expression<Func<T, bool>> predicate = null) where T : class, new()
+		public static async Task<T> AddIfNotExists<T>(this DbSet<T> dbSet, T entity, Expression<Func<T, bool>> predicate = null) where T : class, new()
 		{
-			var exists = predicate != null ? dbSet.Any(predicate) : dbSet.Any();
+			var exists = predicate != null ? await dbSet.AnyAsync(predicate) : await dbSet.AnyAsync();
 			return !exists ? dbSet.Add(entity).Entity : null;
 		}
 	}

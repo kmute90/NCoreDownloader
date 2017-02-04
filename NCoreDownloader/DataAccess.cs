@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using NCoreDownloader.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,8 +15,25 @@ namespace NCoreDownloader
 			{
 				foreach (var item in items)
 				{
-					context.RssItems.AddIfNotExists(item, i => i.Id == item.Id);
+					await context.RssItems.AddIfNotExists(item, i => i.Id == item.Id);
 				}
+				await context.SaveChangesAsync();
+			}
+		}
+
+		public static async Task SaveSessionId(string sessionId)
+		{
+			using (var context = new NCoreDownloaderContext())
+			{
+				//korábbi cookie törlése
+				var data = await context.QBitTorrentData.ToListAsync();
+				context.QBitTorrentData.RemoveRange(data);
+
+				var entity = new QBitTorrentData()
+				{
+					SessionId = sessionId
+				};
+				context.QBitTorrentData.Add(entity);
 				await context.SaveChangesAsync();
 			}
 		}

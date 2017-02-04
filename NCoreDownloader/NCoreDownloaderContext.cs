@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using NCoreDownloader.Model;
 
 namespace NCoreDownloader
 {
     public class NCoreDownloaderContext : DbContext
     {
 		public DbSet<RssItemModel> RssItems { get; set; }
+		public DbSet<QBitTorrentData> QBitTorrentData { get; set; }
 
 		public NCoreDownloaderContext()
 		{

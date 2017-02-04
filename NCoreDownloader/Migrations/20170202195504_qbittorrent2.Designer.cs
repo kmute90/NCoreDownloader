@@ -8,9 +8,10 @@ using NCoreDownloader;
 namespace NCoreDownloader.Migrations
 {
     [DbContext(typeof(NCoreDownloaderContext))]
-    partial class NCoreDownloaderContextModelSnapshot : ModelSnapshot
+    [Migration("20170202195504_qbittorrent2")]
+    partial class qbittorrent2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)

@@ -11,7 +11,8 @@
     "System.Xml.XPath.XmlDocument": "4.0.1-rc3-24109-00",
     "Microsoft.EntityFrameworkCore.Design": "1.1.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
-    "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0"
+    "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection":  "1.1.0"
   },
   "tools": {
     "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-*"
